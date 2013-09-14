@@ -27,7 +27,30 @@ class SiteController extends Controller
 	 */
 	public function actionIndex()
 	{
-		// renders the view file 'protected/views/site/index.php'
+        $job = array(
+            'outputFormat' => 'jpg',
+            'quality' => 70,
+            'backgroundColor' => 'FFFFFF',
+            'width' => 640,
+            'height' => 480,
+            'keep_original_size' => 0,
+            'upScalable' => 0,
+            'cropMode' => 'crop',
+            'blur' => '',
+            'filenamePostfix' => '_640x480',
+        );
+
+        $outputFile = 'image' . $job['filenamePostfix']
+            . '.' . $job['outputFormat'];
+
+        $converter = new Converter('temp');
+
+        if ($converter->convert('pamela.jpg', $outputFile, $job, '')) {
+
+        }
+
+        exit;
+            // renders the view file 'protected/views/site/index.php'
 		// using the default layout 'protected/views/layouts/main.php'
 		$this->render('index');
 	}
